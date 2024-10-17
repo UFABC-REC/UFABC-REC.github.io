@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Relatório</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
+    <link rel="stylesheet" href="estilos.css"> <!-- Se você quiser adicionar estilos -->
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f0f4f1;
+            color: #333;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+        }
+
+        header {
+            background-color: #2e7d32; /* Verde escuro */
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            border-radius: 5px;
+        }
+
+        h1 {
+            margin: 0;
+        }
+
+        main {
+            margin-top: 20px;
+        }
+
+        section {
+            margin-bottom: 20px;
+            padding: 15px;
+            background-color: #ffffff; /* Fundo branco para as seções */
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            color: #388e3c; /* Verde médio */
+            border-bottom: 2px solid #2e7d32; /* Linha verde escura */
+            padding-bottom: 5px;
+        }
+
+        ul {
+            margin-left: 20px;
+            list-style-type: disc;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Laboratório 1 – Captura de Imagem e Vídeo</h1>
+        <p>Data: 10 de Outubro de 2024</p>
+        <p>Autor: Leonardo Lério, Leandro Scarpi, Willian Gambaro</p>
+    </header>
+
+    <main>
+        <section>
+            <h2>1 - Introdução</h2>
+            <p>Este laboratório visa dar início às atividades com a biblioteca OpenCV, uma ferramenta bastante popular para o tratamento de imagens e vídeos. No decorrer do experimento, exploramos como visualizar e salvar imagens e vídeos, além de aplicar princípios fundamentais de captura e edição de dados visuais. Este relatório registra o procedimento, as técnicas empregadas e os resultados alcançados.</p>
+        </section>
+
+        <section>
+            <h2>2 - Fundamentos básicos</h2>
+            <p>O OpenCV é um conjunto de ferramentas de visão computacional que possibilita várias operações em imagens e vídeos, tais como leitura, gravação e processamento. Os conceitos fundamentais discutidos incluem:</p>
+            <ul>
+                <li>Coleta de Imagens: A ação de extrair uma imagem de um documento ou câmera.</li>
+                <li>Captura de Vídeos: A habilidade de registrar e guardar sequências de imagens num arquivo de vídeo.</li>
+                <li>Edição de Imagens: Modificações básicas, como a conversão de imagens em diversos formatos.</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>3 - Materiais e Métodos</h2>
+            <p>Resultados obtidos na pesquisa.</p>
+            <ul>
+                <li>video_read_from_file: Esse programa cria um objeto VideoCapture para o arquivo que está em 'Resources/Cars.mp4', utiliza o método get() para acessar propriedades do vídeo, como frames per second e frame count. Após isso, cria um loop while que roda enquanto o vídeo estiver aberto, inicializa um objeto Mat, que é uma matriz que representa uma imagem e lê as informações do frame para essa matriz. Renderiza o vídeo em uma janela com o método imshow(). No final do loop, há uma condição que verifica se o usuário apertou 'q' para sair do loop, fecha o arquivo de vídeo, todas as janelas e encerra o programa. Pode ser utilizado em programas de reprodução multimídia.</li>
+                
+                <li>video_read_from_image_sequence: Funcionamento quase igual ao 'video_read_from_file', a diferença é que esse lê vários arquivos de imagem, ao invés de um arquivo de vídeo.</li>
+                
+                <li>video_read_from_webcam: Novamente o funcionamento é quase igual, porém agora ao criar o objeto VideoCapture passando o argumento 0, é acessada a câmera padrão do computador. Pode ser utilizado em programas de vídeochamada.</li>
+                
+                <li>video_write_to_file: Esse arquivo lê um vídeo, obtém a largura e altura e cria um objeto VideoWriter utilizando o formato de compressão MJPEG, em que cada frame do vídeo é uma imagem JPEG. Após isso, é iniciado um loop while que mostra cada frame do vídeo e salva cada frame do vídeo no arquivo 'output.avi'.</li>
+                
+                <li>video_write_from_webcam: Funciona de forma parecida com o anterior, a diferença é que ao invés de ler um arquivo de vídeo, lê da webcam. Pode ser utilizado em programas de gravação de vídeos.</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>4 - Resultados e análises</h2>
+            <p>No decorrer do laboratório, obtivemos:</p>
+            <ul>
+                <li>Registrar e guardar a fotografia de Messi.</li>
+                <li>Efetuar com êxito a leitura e gravação do vídeo, exibindo os quadros.</li>
+                <li>Elaborar imagens e vídeos do grupo, seguindo as diretrizes relativas às cores.</li>
+            </ul>
+       <h1>Meus Vídeos Lentos </h1>
+       	  <h2>Video Pessoa</h2>
+             <video width="640" height="360" controls>
+                  <source src="lento.avi" type="video/avi">
+          <h2>Video Objeto</h2>
+          <video width="640" height="360" controls>
+               <source src="objeto_lento.avi" type="video/avi">
+        Seu navegador não suporta a tag de vídeo.
+       </video>
+          <h1>Meus Vídeos Rápidos </h1>
+          <h2>Video Pessoa</h2>
+          	<video width="640" height="360" controls>
+               		<source src="rapido.avi" type="video/avi">
+          <h2>Video Objeto</h2>
+          	<video width="640" height="360" controls>
+               		<source src="objeto_rapido.avi" type="video/avi">     
+       </video>
+            <h2>Foto do grupo</h2>
+                <img src="FotoGrupo.jpg" alt="Minha foto" width="300">
+	    <h2>Foto montagem</h2>
+                <img src="FotoMontagem.jpeg" alt="Minha foto" width="300">
+        </section>
+
+        <section>
+            <h2>5 - Conclusões e comentários finais</h2>
+            <p>Este laboratório ofereceu uma experiência prática com o OpenCV, facilitando a compreensão dos princípios básicos do processamento de imagem e vídeo. A vivência com a captura e análise de dados visuais evidenciou a flexibilidade da biblioteca. Ademais, a criação de imagens através do Canva foi um acréscimo interessante, que nos possibilitou explorar a criatividade na apresentação dos resultados.</p>
+            <p>No futuro, poderemos expandir nossos estudos em processamento de vídeo, investigando métodos mais sofisticados e suas utilizações práticas.</p>
+        </section>
+    </main>
+</body>
+</html>
