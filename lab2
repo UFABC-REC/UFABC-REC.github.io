@@ -1,1 +1,167 @@
+Claro! Vou adicionar comentários detalhados ao código C++ para que fique mais claro o que cada parte faz. Vamos revisar o código em partes.
+Parte 1: Filtragem de Imagens
+
+cpp
+
+#include <opencv2/opencv.hpp>
+#include <iostream>
+
+// Função para aplicar diferentes filtros na imagem
+void apply_filters(const cv::Mat& img) {
+    cv::Mat mean_filtered, gaussian_filtered, median_filtered, bilateral_filtered;
+
+    // Filtro de média (blur)
+    cv::blur(img, mean_filtered, cv::Size(3, 3)); // Aplica um filtro de média com um kernel 3x3
+    cv::imwrite("mean_filtered_3x3.jpg", mean_filtered); // Salva a imagem filtrada
+
+    // Filtro gaussiano
+    cv::GaussianBlur(img, gaussian_filtered, cv::Size(3, 3), 0); // Aplica o filtro gaussiano
+    cv::imwrite("gaussian_filtered_3x3.jpg", gaussian_filtered); // Salva a imagem filtrada
+
+    // Filtro mediano
+    cv::medianBlur(img, median_filtered, 3); // Aplica o filtro mediano
+    cv::imwrite("median_filtered_3x3.jpg", median_filtered); // Salva a imagem filtrada
+
+    // Filtro bilateral
+    cv::bilateralFilter(img, bilateral_filtered, 9, 75, 75); // Aplica o filtro bilateral
+    cv::imwrite("bilateral_filtered_3x3.jpg", bilateral_filtered); // Salva a imagem filtrada
+}
+
+int main() {
+    // Carrega a imagem original
+    cv::Mat img = cv::imread("sua_imagem.jpg");
+    if (img.empty()) { // Verifica se a imagem foi carregada corretamente
+        std::cerr << "Erro ao abrir a imagem!" << std::endl;
+        return -1; // Retorna um erro se a imagem não puder ser aberta
+    }
+
+    apply_filters(img); // Chama a função para aplicar os filtros
+    return 0; // Finaliza o programa
+}
+
+Parte 2: Adicionando Ruído
+
+cpp
+
+// Função para adicionar ruído do tipo sal-e-pimenta
+void add_salt_and_pepper_noise(cv::Mat& img, double salt_prob, double pepper_prob) {
+    cv::Mat noisy = img.clone(); // Clona a imagem original para adicionar ruído
+    int total_pixels = img.rows * img.cols; // Calcula o total de pixels na imagem
+    int salt = static_cast<int>(salt_prob * total_pixels); // Calcula quantos pixels de sal adicionar
+    int pepper = static_cast<int>(pepper_prob * total_pixels); // Calcula quantos pixels de pimenta adicionar
+
+    // Adiciona pixels de sal
+    for (int i = 0; i < salt; i++) {
+        int x = rand() % img.cols; // Gera uma coordenada x aleatória
+        int y = rand() % img.rows; // Gera uma coordenada y aleatória
+        noisy.at<cv::Vec3b>(y, x) = cv::Vec3b(255, 255, 255); // Define o pixel como branco (sal)
+    }
+
+    // Adiciona pixels de pimenta
+    for (int i = 0; i < pepper; i++) {
+        int x = rand() % img.cols; // Gera uma coordenada x aleatória
+        int y = rand() % img.rows; // Gera uma coordenada y aleatória
+        noisy.at<cv::Vec3b>(y, x) = cv::Vec3b(0, 0, 0); // Define o pixel como preto (pimenta)
+    }
+
+    cv::imwrite("noisy_image.jpg", noisy); // Salva a imagem com ruído
+    apply_filters(noisy); // Aplica os filtros na imagem com ruído
+}
+
+Parte 3: Webcam com Filtragem
+
+cpp
+
+int main() {
+    cv::VideoCapture cap(0); // Abre a webcam (0 é o ID padrão da primeira câmera)
+    if (!cap.isOpened()) { // Verifica se a webcam foi aberta corretamente
+        std::cerr << "Erro ao abrir a webcam!" << std::endl;
+        return -1; // Retorna um erro se a webcam não puder ser aberta
+    }
+
+    cv::Mat frame; // Matriz para armazenar os frames da webcam
+    while (true) {
+        cap >> frame; // Captura um frame da webcam
+        if (frame.empty()) break; // Se o frame estiver vazio, sai do loop
+
+        cv::Mat filtered_frame; // Matriz para a imagem filtrada
+        cv::medianBlur(frame, filtered_frame, 5); // Aplica um filtro mediano com kernel 5x5
+
+        cv::imshow("Filtragem de Webcam", filtered_frame); // Exibe a imagem filtrada em uma janela
+
+        char key = cv::waitKey(1); // Aguarda uma tecla ser pressionada
+        if (key == 's') { // Se a tecla 's' for pressionada
+            cv::imwrite("webcam_filtered.jpg", filtered_frame); // Salva a imagem filtrada
+        }
+    }
+
+    cap.release(); // Libera a captura da webcam
+    cv::destroyAllWindows(); // Fecha todas as janelas abertas
+    return 0; // Finaliza o programa
+}
+
+Parte 4: Desafio Opcional
+
+cpp
+
+int main() {
+    cv::VideoCapture cap(0); // Abre a webcam
+    if (!cap.isOpened()) { // Verifica se a webcam foi aberta corretamente
+        std::cerr << "Erro ao abrir a webcam!" << std::endl;
+        return -1; // Retorna um erro se a webcam não puder ser aberta
+    }
+
+    cv::Mat frame; // Matriz para armazenar os frames da webcam
+    int kernel_size = 3; // Tamanho inicial do kernel
+    char filter_type = 'm'; // Filtro padrão (mediano)
+
+    while (true) {
+        cap >> frame; // Captura um frame da webcam
+        if (frame.empty()) break; // Se o frame estiver vazio, sai do loop
+
+        cv::Mat filtered_frame; // Matriz para a imagem filtrada
+
+        // Aplicar filtro baseado na escolha do usuário
+        if (filter_type == 'm') {
+            cv::medianBlur(frame, filtered_frame, kernel_size); // Filtro mediano
+        } else if (filter_type == 'g') {
+            cv::GaussianBlur(frame, filtered_frame, cv::Size(kernel_size, kernel_size), 0); // Filtro gaussiano
+        } else if (filter_type == 'b') {
+            cv::bilateralFilter(frame, filtered_frame, 9, 75, 75); // Filtro bilateral
+        } else {
+            cv::blur(frame, filtered_frame, cv::Size(kernel_size, kernel_size)); // Filtro de média
+        }
+
+        cv::imshow("Filtragem Dinâmica", filtered_frame); // Exibe a imagem filtrada
+
+        char key = cv::waitKey(1); // Aguarda uma tecla ser pressionada
+        if (key == 's') { // Se a tecla 's' for pressionada
+            cv::imwrite("webcam_filtered.jpg", filtered_frame); // Salva a imagem filtrada
+        } else if (key == 'a') {
+            filter_type = 'm'; // Muda para filtro mediano
+        } else if (key == 'g') {
+            filter_type = 'g'; // Muda para filtro gaussiano
+        } else if (key == 'b') {
+            filter_type = 'b'; // Muda para filtro bilateral
+        } else if (key == '3') {
+            kernel_size = 3; // Muda o tamanho do kernel para 3x3
+        } else if (key == '5') {
+            kernel_size = 5; // Muda o tamanho do kernel para 5x5
+        } else if (key == '7') {
+            kernel_size = 7; // Muda o tamanho do kernel para 7x7
+        } else if (key == '9') {
+            kernel_size = 9; // Muda o tamanho do kernel para 9x9
+        } else if (key == 'B') {
+            kernel_size = 11; // Muda o tamanho do kernel para 11x11
+        }
+    }
+
+    cap.release(); // Libera a captura da webcam
+    cv::destroyAllWindows(); // Fecha todas as janelas abertas
+    return 0; // Finaliza o programa
+}
+
+Conclusão
+
+Com esses comentários, o código deve ficar mais fácil de entender. Cada parte do código é explicada, desde a abertura da imagem até a aplicação de filtros e captura da webcam. Se precisar de mais alguma coisa, é só avisar!
 
