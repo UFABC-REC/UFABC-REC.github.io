@@ -1,0 +1,6 @@
+cmake_minimum_required(VERSION 2.8)
+project( sal_pimenta )
+find_package( OpenCV REQUIRED )
+include_directories( ${OpenCV_INCLUDE_DIRS} )
+add_executable( sal_pimenta sal_pimenta.cpp )
+target_link_libraries( sal_pimenta ${OpenCV_LIBS} )
