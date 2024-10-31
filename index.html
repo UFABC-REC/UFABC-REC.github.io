@@ -246,6 +246,148 @@ A imagem poderá ser salva ao pressionar a tecla [s].
 	         
 	       <h1>Parte 2</h1>
 	       <img src="lab2/2/sal_pimenta/results/salt_pepper_noise_image.jpg" alt="Descrição da Imagem" width="300" height="200">
+            	       
+		    
+		<h1>Parte 3</h1>
+	       <h3>Programa em que a imagem de entrada é da webcam, e que mostre o resultado da filtragem numa janela opencv, de forma contínua na tela do computar. Utilizando a tecla [s] do teclado para permitir salvar a imagem sendo apresentada na tela, em formato .jpg.</h3>
+		<pre><code>
+#include &lt;iostream&gt;
+#include &lt;opencv2/imgproc/imgproc.hpp&gt;
+#include &lt;opencv2/highgui/highgui.hpp&gt;
+#include &lt;opencv2/core/core.hpp&gt;
+
+using namespace std;
+using namespace cv;
+
+void add_salt_pepper_noise(Mat &srcArr, float pa, float pb )
+{    
+    RNG rng; // rand number generator
+    int amount1=srcArr.rows*srcArr.cols*pa;
+    int amount2=srcArr.rows*srcArr.cols*pb;
+    for(int counter=0; counter&lt;amount1; ++counter)
+    {
+        srcArr.at&lt;uchar&gt;(rng.uniform( 0,srcArr.rows), rng.uniform(0, srcArr.cols)) =0;
+    }
+    for (int counter=0; counter&lt;amount2; ++counter)
+    {
+        srcArr.at&lt;uchar&gt;(rng.uniform(0,srcArr.rows), rng.uniform(0, srcArr.cols)) = 255;
+    }
+}
+
+int main(int argc, char* argv[]) {
+    Mat srcArr;
+    
+    if (argc &lt;= 1) {
+        srcArr = imread("image.jpg");
+    } else if (argc &gt;= 2) {
+        srcArr = imread(argv[1]);
+    }
+    
+    cvtColor(srcArr, srcArr, COLOR_RGB2GRAY, 1);
+    
+    float pa = 0.02;
+    float pb = 0.02;
+    
+    add_salt_pepper_noise(srcArr, pa, pb);
+    
+    imwrite("salt_pepper_noise_image.jpg", srcArr);
+    
+    printf("\nFiltro sal e pimenta aplicado na imagem!");
+    printf("\nImagem salva\n\n");
+}
+</code></pre>	       
+
+      
+	       <h1>Parte 4 - Desafio</h1>
+               <h3>Programa de filtragem para entrada webcam, e que mostre o resultado da filtragem numa janela opencv, sendo que permitirá ao usuário escolher o tipo de filtragem, e o tamanho do kernel.</h3>
+	     <pre><code>  
+#include <opencv2/opencv.hpp>
+#include <iostream>
+
+using namespace cv;
+using namespace std;
+
+// Função para aplicar o filtro baseado na escolha do usuário
+Mat applyFilter(const Mat& frame, int filterType, int kernelSize) {
+    Mat filteredFrame;
+    
+    // Escolhe o filtro baseado na entrada
+    switch (filterType) {
+        case 0: // Filtro de média
+            blur(frame, filteredFrame, Size(kernelSize, kernelSize));
+            break;
+        case 1: // Filtro gaussiano
+            GaussianBlur(frame, filteredFrame, Size(kernelSize, kernelSize), 0);
+            break;
+        case 2: // Filtro mediano
+            medianBlur(frame, filteredFrame, kernelSize);
+            break;
+        case 3: // Filtro bilateral
+            bilateralFilter(frame, filteredFrame, kernelSize, kernelSize * 2, kernelSize / 2);
+            break;
+        default:
+            filteredFrame = frame; // Sem filtro
+            break;
+    }
+    return filteredFrame;
+}
+
+int main() {
+    VideoCapture cap(0); // Captura da webcam
+    if (!cap.isOpened()) {
+        cerr << "Erro ao abrir a webcam!" << endl;
+        return -1;
+    }
+
+    int filterType = 0; // Tipo de filtro (0: média, 1: gaussiano, 2: mediano, 3: bilateral)
+    int kernelSize = 3; // Tamanho do kernel
+
+    while (true) {
+        Mat frame;
+        cap >> frame; // Captura um novo frame
+
+        // Aplica o filtro
+        Mat filteredFrame = applyFilter(frame, filterType, kernelSize);
+
+        // Exibe o frame filtrado
+        imshow("Video Filtrado", filteredFrame);
+
+        // Teclas de controle
+        char key = (char)waitKey(30);
+        if (key == 27) { // Tecla ESC para sair
+            break;
+        } else if (key == 'a') {
+            filterType = 0; // Filtro de média
+        } else if (key == 'g') {
+            filterType = 1; // Filtro gaussiano
+        } else if (key == 'm') {
+            filterType = 2; // Filtro mediano
+        } else if (key == 'b') {
+            filterType = 3; // Filtro bilateral
+        } else if (key == '3') {
+            kernelSize = 3;
+        } else if (key == '5') {
+            kernelSize = 5;
+        } else if (key == '7') {
+            kernelSize = 7;
+        } else if (key == '9') {
+            kernelSize = 9;
+        } else if (key == 'B') {
+            kernelSize = 11;
+        }
+
+        // Ajusta o kernelSize para ser ímpar
+        if (kernelSize % 2 == 0) {
+            kernelSize += 1;
+        }
+    }
+
+    cap.release(); // Libera a captura
+    destroyAllWindows(); // Fecha todas as janelas
+    return 0;
+}
+             </code></pre>   
+	  
             </section>
             <section>
                 <h2>5 - Conclusões e Comentários Finais</h2>
