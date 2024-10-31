@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Relatório</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
-    <link rel="stylesheet" href="estilos.css"> <!-- Se você quiser adicionar estilos -->
     <style>
         body {
             font-family: 'Roboto', sans-serif;
@@ -50,91 +49,234 @@
             margin-left: 20px;
             list-style-type: disc;
         }
+
+        button {
+            background-color: #388e3c;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+            margin-top: 20px;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #2e7d32;
+        }
+
+        .page {
+            display: none;
+        }
+
+        .active {
+            display: block;
+        }
     </style>
 </head>
 <body>
     <header>
-        <h1>Laboratório 1 – Captura de Imagem e Vídeo</h1>
+        <h1>Grupo de Processamento de Vídeo</h1>
         <p>Data: 10 de Outubro de 2024</p>
-        <p>Autor: Leonardo Lério, Leandro Scarpi, Willian Gambaro</p>
+        <p>Autores: Leonardo Lério, Leandro Scarpi, Willian Gambaro</p>
     </header>
 
-    <main>
-        <section>
-            <h2>1 - Introdução</h2>
-            <p>Este laboratório visa dar início às atividades com a biblioteca OpenCV, uma ferramenta bastante popular para o tratamento de imagens e vídeos. No decorrer do experimento, exploramos como visualizar e salvar imagens e vídeos, além de aplicar princípios fundamentais de captura e edição de dados visuais. Este relatório registra o procedimento, as técnicas empregadas e os resultados alcançados.</p>
-        </section>
+    <div id="home" class="page active">
+        <main>
+            <h2>Bem-vindo ao Relatório</h2>
+            <p>Explore os laboratórios de processamento de vídeo.</p>
+            <button onclick="showPage('laboratorio1')">Ir para Laboratório 1</button>
+            <button onclick="showPage('laboratorio2')">Ir para Laboratório 2</button>
+        </main>
+    </div>
 
-        <section>
-            <h2>2 - Fundamentos básicos</h2>
-            <p>O OpenCV é um conjunto de ferramentas de visão computacional que possibilita várias operações em imagens e vídeos, tais como leitura, gravação e processamento. Os conceitos fundamentais discutidos incluem:</p>
-            <ul>
-                <li>Coleta de Imagens: A ação de extrair uma imagem de um documento ou câmera.</li>
-                <li>Captura de Vídeos: A habilidade de registrar e guardar sequências de imagens num arquivo de vídeo.</li>
-                <li>Edição de Imagens: Modificações básicas, como a conversão de imagens em diversos formatos.</li>
-            </ul>
-        </section>
+    <div id="laboratorio1" class="page">
+        <main>
+            <h1>Laboratório 1 – Captura de Imagem e Vídeo</h1>
+            <section>
+                <h2>1 - Introdução</h2>
+                <p>Este laboratório visa dar início às atividades com a biblioteca OpenCV, uma ferramenta bastante popular para o tratamento de imagens e vídeos. No decorrer do experimento, exploramos como visualizar e salvar imagens e vídeos, além de aplicar princípios fundamentais de captura e edição de dados visuais. Este relatório registra o procedimento, as técnicas empregadas e os resultados alcançados.</p>
+            </section>
 
-        <section>
-            <h2>3 - Materiais e Métodos</h2>
-            <p>Resultados obtidos na pesquisa.</p>
-            <ul>
-                <li>video_read_from_file: Esse programa cria um objeto VideoCapture para o arquivo que está em 'Resources/Cars.mp4', utiliza o método get() para acessar propriedades do vídeo, como frames per second e frame count. Após isso, cria um loop while que roda enquanto o vídeo estiver aberto, inicializa um objeto Mat, que é uma matriz que representa uma imagem e lê as informações do frame para essa matriz. Renderiza o vídeo em uma janela com o método imshow(). No final do loop, há uma condição que verifica se o usuário apertou 'q' para sair do loop, fecha o arquivo de vídeo, todas as janelas e encerra o programa. Pode ser utilizado em programas de reprodução multimídia.</li>
+            <section>
+                <h2>2 - Fundamentos Básicos</h2>
+                <p>O OpenCV é um conjunto de ferramentas de visão computacional que possibilita várias operações em imagens e vídeos, tais como leitura, gravação e processamento. Os conceitos fundamentais discutidos incluem:</p>
+                <ul>
+                    <li>Coleta de Imagens: A ação de extrair uma imagem de um documento ou câmera.</li>
+                    <li>Captura de Vídeos: A habilidade de registrar e guardar sequências de imagens num arquivo de vídeo.</li>
+                    <li>Edição de Imagens: Modificações básicas, como a conversão de imagens em diversos formatos.</li>
+                </ul>
+            </section>
+            
+	    <section>
+		<h2>3 - Materiais e Métodos</h2>
+		<p>Resultados obtidos na pesquisa.</p>
+		<ul>
+		    <li>video_read_from_file: Esse programa cria um objeto VideoCapture para o arquivo que está em 'Resources/Cars.mp4', utiliza o método get() para acessar propriedades do vídeo, como frames per second e frame count. Após isso, cria um loop while que roda enquanto o vídeo estiver aberto, inicializa um objeto Mat, que é uma matriz que representa uma imagem e lê as informações do frame para essa matriz. Renderiza o vídeo em uma janela com o método imshow(). No final do loop, há uma condição que verifica se o usuário apertou 'q' para sair do loop, fecha o arquivo de vídeo, todas as janelas e encerra o programa. Pode ser utilizado em programas de reprodução multimídia.</li>
+		        
+		    <li>video_read_from_image_sequence: Funcionamento quase igual ao 'video_read_from_file', a diferença é que esse lê vários arquivos de imagem, ao invés de um arquivo de vídeo.</li>
+		        
+		    <li>video_read_from_webcam: Novamente o funcionamento é quase igual, porém agora ao criar o objeto VideoCapture passando o argumento 0, é acessada a câmera padrão do computador. Pode ser utilizado em programas de vídeochamada.</li>
+		        
+		    <li>video_write_to_file: Esse arquivo lê um vídeo, obtém a largura e altura e cria um objeto VideoWriter utilizando o formato de compressão MJPEG, em que cada frame do vídeo é uma imagem JPEG. Após isso, é iniciado um loop while que mostra cada frame do vídeo e salva cada frame do vídeo no arquivo 'output.avi'.</li>
+		        
+		    <li>video_write_from_webcam: Funciona de forma parecida com o anterior, a diferença é que ao invés de ler um arquivo de vídeo, lê da webcam. Pode ser utilizado em programas de gravação de vídeos.</li>
+		</ul>
+		</section>
+		
+		<section>
+		    <h2>4 - Resultados e análises</h2>
+		    <p>No decorrer do laboratório, obtivemos:</p>
+		    <ul>
+		        <li>Registrar e guardar a fotografia de Messi.</li>
+		        <li>Efetuar com êxito a leitura e gravação do vídeo, exibindo os quadros.</li>
+		        <li>Elaborar imagens e vídeos do grupo, seguindo as diretrizes relativas às cores.</li>
+			
+			<h1>Vídeo rápido da primeira pessoa</h1>
+		<video width="640" height="360" controls>
+	    	<source src="rapido.avi" type="video/avi">
+	    		</video>
+			<h1>Vídeo lento da segunda pessoa</h1>
+		<video width="640" height="360" controls>
+	    	<source src="lento.avi" type="video/avi">
+	    		</video>
+			<h1>Vídeo rápido da primeiro objeto</h1>
+		<video width="640" height="360" controls>
+	    	<source src="objeto_rapido.avi" type="video/avi">
+	    		</video>
+			<h1>Vídeo lento da segundo objeto</h1>
+		<video width="640" height="360" controls>
+	    	<source src="objeto_lento.avi" type="video/avi">
+			</video>
+			<h1>Imagem do grupo</h1>
+	    <img src="FotoGrupo.jpg" alt="Descrição da Imagem" width="300" height="200">
+	    		<h1>Foto Montagem</h1>
+	    <img src="FotoMontagem.jpeg" alt="Descrição da Imagem" width="300" height="200">
+		    </ul>
+		</section>
+
+	      <section>
+		    <h2>5 - Conclusões e comentários finais</h2>
+		    <p>Este laboratório ofereceu uma experiência prática com o OpenCV, facilitando a compreensão dos princípios básicos do processamento de imagem e vídeo. A vivência com a captura e análise de dados visuais evidenciou a flexibilidade da biblioteca. Ademais, a criação de imagens através do Canva foi um acréscimo interessante, que nos possibilitou explorar a criatividade na apresentação dos resultados.</p>
+		    <p>No futuro, poderemos expandir nossos estudos em processamento de vídeo, investigando métodos mais sofisticados e suas utilizações práticas.</p>
+	     </section>
+
+            <button onclick="showPage('home')">Voltar para a Página Inicial</button>
+        </main>
+    </div>
+
+    <div id="laboratorio2" class="page">
+        <main>
+            <h1>Laboratório 2 – Análise de Vídeo</h1>
+            <section>
+                <h2>1 - Introdução</h2>
+                <p>O tratamento de imagens é um campo crucial na visão computacional, focado na manipulação e avaliação de imagens digitais. Neste estudo, recorremos à biblioteca OpenCV para implementar diversas técnicas de filtragem em imagens, com o objetivo de diminuir ruídos e aprimorar a qualidade da imagem. A filtragem é um procedimento que modifica os pixels de uma imagem para alcançar um propósito específico, como suavizar ou destacar atributos. Neste trabalho, nos concentraremos em filtros como média, gaussiana, mediana e bilateral, investigando o impacto do tamanho do núcleo nas imagens processadas.</p>
+            </section>
+            <section>
+                <h2>2 - Fundamentos Básicos</h2>
+                <p>Os filtros de imagem são instrumentos fundamentais na manipulação de imagens. Cada tipo de filtro tem atributos que o qualificam para diversas utilizações:
+		<ul>
+		    <li>Filtro de Média: Diminui ruídos através da suavização da imagem, substituindo cada pixel pela média dos pixels adjacentes. É eficiente, porém pode provocar manchas.
+		    <li>Filtro Gaussiano: Comparado ao filtro de média, atribui maior importância aos pixels próximos, o que resulta em uma suavização mais suave e menos desfocada.
+		    <li>Filtro Mediano: Repõe cada pixel com o valor mediano dos pixels adjacentes. É particularmente eficiente na eliminação do ruído de sal e pimenta, mantendo as bordas intactas.
+		    <li>Filtro Bilateral: Integra suavização e manutenção das bordas, levando em conta tanto a proximidade espacial quanto a semelhança de cor dos pixels.
+		
+		
+		<ul>
+
+</p>
+            </section>
+            <section>
+                <h2>3 - Materiais e Métodos</h2>
+                <p>
+                <ul>
+		    <li>Fotografias: Usaremos fotografias feitas durante o Laboratório 1.
+		    <li>Análise: Desenvolvimento de softwares para a aplicação dos filtros de média, gaussiano, mediano e bilateral, empregando kernels de dimensões 3x3, 5x5, 7x7 e 11x11.
+Cada resultado será armazenado em pastas separadas, categorizadas de acordo com o tipo de filtro e o tamanho do kernel.
+		    <li>Sal e Pimenta: Incorporaremos o ruído sal-e-pimenta às imagens originais e repetimos o procedimento de filtragem, examinando a reação de cada filtro ao ruído.
+		    <li>Processamento em Tempo Real: Uma aplicação extra usará a entrada da webcam, exibindo os resultados da filtragem em uma janela OpenCV.
+A imagem poderá ser salva ao pressionar a tecla [s].
+		    <li>Desafio de Escolha: Um aplicativo interativo possibilitará ao usuário selecionar o tipo de filtragem e a dimensão do kernel.</p>
+                <ul>
+            </section>
+            <section>
+                <h2>4 - Resultados e Análises</h2>
+                <p>Os dados foram estruturados em diagramas que apresentam a comparação visual entre as imagens filtradas para variados tamanhos de kernel e métodos de filtragem. Examinamos como a mudança no tamanho do kernel influencia a suavização e a manutenção de detalhes nas fotografias. Adicionalmente, analisamos a efetividade de cada tipo de filtro na gestão do ruído sal-e-pimenta. Comparamos as imagens filtradas, ressaltando os benefícios e desvantagens de cada técnica.Para a filtragem em tempo real, avaliamos a habilidade do sistema em interpretar a entrada da webcam e implementar as filtragens selecionadas, avaliando a latência e a qualidade das imagens armazenadas.</p>
+                <h1>Parte 1</h1>
+                <h3>kernel 3x3</h3>
+                <h4>bilateral Blur</h4>
+	    <img src="bilateral_blur_image_kernel3x3.jpg" alt="Descrição da Imagem" width="300" height="200">
+	        <h4>Gaussian Blur</h4>
+	    <img src="gaussian_blur_image_kernel3x3.jpg" alt="Descrição da Imagem" width="300" height="200">
+	        <h4>Madian Blur</h4>
+	    <img src="median_blur_image_kernel3x3.jpg" alt="Descrição da Imagem" width="300" height="200">
+	        <h4>Blur</h4>
+	    <img src="blur_image_kernel3x3.jpg" alt="Descrição da Imagem" width="300" height="200">
+	    
+	    	<h3>kernel 5x5</h3>
+                <h4>bilateral Blur</h4>
+	    <img src="bilateral_blur_image_kernel5x5.jpg" alt="Descrição da Imagem" width="300" height="200">
+	        <h4>Gaussian Blur</h4>
+	    <img src="gaussian_blur_image_kernel5x5.jpg" alt="Descrição da Imagem" width="300" height="200">
+	        <h4>Madian Blur</h4>
+	    <img src="median_blur_image_kernel5x5.jpg" alt="Descrição da Imagem" width="300" height="200">
+	        <h4>Blur</h4>
+	    <img src="blur_image_kernel5x5.jpg" alt="Descrição da Imagem" width="300" height="200">
+	    
+	    	<h3>kernel 7x7</h3>
+                <h4>bilateral Blur</h4>
+	    <img src="bilateral_blur_image_kernel7x7.jpg" alt="Descrição da Imagem" width="300" height="200">
+	        <h4>Gaussian Blur</h4>
+	    <img src="gaussian_blur_image_kernel7x7.jpg" alt="Descrição da Imagem" width="300" height="200">
+	        <h4>Madian Blur</h4>
+	    <img src="median_blur_image_kernel7x7.jpg" alt="Descrição da Imagem" width="300" height="200">
+	        <h4>Blur</h4>
+	    <img src="blur_image_kernel7x7.jpg" alt="Descrição da Imagem" width="300" height="200">
+	    
+	    	<h3>kernel 11x11</h3>
+                <h4>bilateral Blur</h4>
+	    <img src="bilateral_blur_image_kernel11x11.jpg" alt="Descrição da Imagem" width="300" height="200">
+	        <h4>Gaussian Blur</h4>
+	    <img src="gaussian_blur_image_kernel11x11.jpg" alt="Descrição da Imagem" width="300" height="200">
+	        <h4>Madian Blur</h4>
+	    <img src="median_blur_image_kernel11x11.jpg" alt="Descrição da Imagem" width="300" height="200">
+	        <h4>Blur</h4>
+	    <img src="blur_image_kernel11x11.jpg" alt="Descrição da Imagem" width="300" height="200">
+	         
+	       <h1>Parte 2</h1>
+	       <img src="salt_pepper_noise_image.jpg" alt="Descrição da Imagem" width="300" height="200">
+	       
+	 
+	       <h1>Parte 3</h1>      
+	       
+	       
+	     
                 
-                <li>video_read_from_image_sequence: Funcionamento quase igual ao 'video_read_from_file', a diferença é que esse lê vários arquivos de imagem, ao invés de um arquivo de vídeo.</li>
-                
-                <li>video_read_from_webcam: Novamente o funcionamento é quase igual, porém agora ao criar o objeto VideoCapture passando o argumento 0, é acessada a câmera padrão do computador. Pode ser utilizado em programas de vídeochamada.</li>
-                
-                <li>video_write_to_file: Esse arquivo lê um vídeo, obtém a largura e altura e cria um objeto VideoWriter utilizando o formato de compressão MJPEG, em que cada frame do vídeo é uma imagem JPEG. Após isso, é iniciado um loop while que mostra cada frame do vídeo e salva cada frame do vídeo no arquivo 'output.avi'.</li>
-                
-                <li>video_write_from_webcam: Funciona de forma parecida com o anterior, a diferença é que ao invés de ler um arquivo de vídeo, lê da webcam. Pode ser utilizado em programas de gravação de vídeos.</li>
-            </ul>
-        </section>
+	    <img src="FotoGrupo.jpg" alt="Descrição da Imagem" width="300" height="200">
+            </section>
+            <section>
+                <h2>5 - Conclusões e Comentários Finais</h2>
+                <p>Este experimento ofereceu uma visão prática dos variados tipos de filtragem em imagens. Notamos que a seleção do filtro e a dimensão do kernel influenciam consideravelmente a qualidade final da imagem. Os filtros mediano e bilateral se mostraram mais eficientes em preservar detalhes relevantes enquanto minimizavam ruídos, particularmente em circunstâncias onde o ruído sal-e-pimenta estava presente.
 
-        <section>
-            <h2>4 - Resultados e análises</h2>
-            <p>No decorrer do laboratório, obtivemos:</p>
-            <ul>
-                <li>Registrar e guardar a fotografia de Messi.</li>
-                <li>Efetuar com êxito a leitura e gravação do vídeo, exibindo os quadros.</li>
-                <li>Elaborar imagens e vídeos do grupo, seguindo as diretrizes relativas às cores.</li>
-            </ul>
-       <h1>Meus Vídeos Lentos</h1>
-<h2>Video Pessoa</h2>
-<video width="640" height="360" controls>
-    <source src="lab1/lento.mp4" type="video/mp4">
-    Seu navegador não suporta a tag de vídeo.
-</video>
+O teste de filtragem em tempo real evidenciou a capacidade da OpenCV em aplicações interativas, ressaltando a relevância do tratamento de imagens em tempo real em campos como a vigilância e a comunicação visual. No futuro, poderemos investigar algoritmos mais sofisticados e utilizações em cenários mais intrincados, como a análise de vídeo e o reconhecimento de padrões.</p>
+            </section>
+            <button onclick="showPage('home')">Voltar para a Página Inicial</button>
+        </main>
+    </div>
 
-<h2>Video Objeto</h2>
-<video width="640" height="360" controls>
-    <source src="lab1/objeto_lento.mp4" type="video/mp4">
-    Seu navegador não suporta a tag de vídeo.
-</video>
+    <script>
+        function showPage(pageId) {
+            // Esconder todas as páginas
+            const pages = document.querySelectorAll('.page');
+            pages.forEach(page => {
+                page.classList.remove('active');
+            });
 
-<h1>Meus Vídeos Rápidos</h1>
-<h2>Video Pessoa</h2>
-<video width="640" height="360" controls>
-    <source src="lab1/rapido.mp4" type="video/mp4">
-    Seu navegador não suporta a tag de vídeo.
-</video>
-
-<h2>Video Objeto</h2>
-<video width="640" height="360" controls>
-    <source src="lab1/objeto_rapido.mp4" type="video/mp4">
-    Seu navegador não suporta a tag de vídeo.
-</video>
-            <h2>Foto do grupo</h2>
-                <img src="lab1/FotoGrupo.jpg" alt="Minha foto" width="300">
-	    <h2>Foto montagem</h2>
-                <img src="lab1/FotoMontagem.jpeg" alt="Minha foto" width="300">
-        </section>
-
-        <section>
-            <h2>5 - Conclusões e comentários finais</h2>
-            <p>Este laboratório ofereceu uma experiência prática com o OpenCV, facilitando a compreensão dos princípios básicos do processamento de imagem e vídeo. A vivência com a captura e análise de dados visuais evidenciou a flexibilidade da biblioteca. Ademais, a criação de imagens através do Canva foi um acréscimo interessante, que nos possibilitou explorar a criatividade na apresentação dos resultados.</p>
-            <p>No futuro, poderemos expandir nossos estudos em processamento de vídeo, investigando métodos mais sofisticados e suas utilizações práticas.</p>
-        </section>
-    </main>
+            // Mostrar a página selecionada
+            const activePage = document.getElementById(pageId);
+            activePage.classList.add('active');
+        }
+    </script>
 </body>
 </html>
