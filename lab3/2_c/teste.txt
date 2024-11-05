@@ -1,0 +1,12 @@
+ls
+CMakeCache.txt
+CMakeFiles
+cmake_install.cmake
+CMakeLists.txt
+detector_canny_save_images
+detector_canny_save_images.cpp
+image.jpg
+imagem_filtrada.png
+Makefile
+teste.txt
+video.mp4

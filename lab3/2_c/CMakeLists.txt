@@ -1,0 +1,6 @@
+cmake_minimum_required(VERSION 2.8)
+project( detector_canny_save_images )
+find_package( OpenCV REQUIRED )
+include_directories( ${OpenCV_INCLUDE_DIRS} )
+add_executable( detector_canny_save_images detector_canny_save_images.cpp )
+target_link_libraries( detector_canny_save_images ${OpenCV_LIBS} )
