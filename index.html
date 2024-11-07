@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Relatório</title>
+    <title>Grupo REC - PV</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
     <style>
         body {
@@ -24,7 +24,7 @@
         }
 
         h1 {
-            margin: 0;
+            margin: 10px;
         }
 
         main {
@@ -63,7 +63,7 @@
         }
 
         button:hover {
-            background-color: #2e7d32;
+            background-color: #106014;
         }
 
         .page {
@@ -84,10 +84,23 @@
 
     <div id="home" class="page active">
         <main>
-            <h2>Bem-vindo ao Relatório</h2>
+            <h2>Bem-vindo ao Repositório do grupo REC</h2>
             <p>Explore os laboratórios de processamento de vídeo.</p>
             <button onclick="showPage('laboratorio1')">Ir para Laboratório 1</button>
+            <button onclick="showPage('laboratorio3')">Ir para Laboratório 3</button><br>
             <button onclick="showPage('laboratorio2')">Ir para Laboratório 2</button>
+            <button onclick="showPage('laboratorio4')">Ir para Laboratório 4</button>
+            <hr style="border: none; height: 50px;">
+
+            <h2>Confira também o desenvolvimento do trabalho sobre<br>Sistema de Monitoramento de Estacionamento</h2>
+            <button onclick="showPage('CA')">1 - Contexto e Cenário de Aplicação</button><br>
+            <button onclick="showPage('MF')">2 - Modelagem Funcional  do Sistema de Processamento Visual</button><br>
+            <button onclick="showPage('LEx')">3 - Desenvolvimento do Sistema de Processamento Visual</button><br>
+            <button onclick="showPage('TC')">4 - Elaboração do Laboratório Experimental</button><br>
+            <button onclick="showPage('SPV')">5 - Teste de Campo do SPV</button><br>
+            <button onclick="showPage('RFT')">6 - Elaboração do Relatório Final do Trabalho</button><br>
+            <button onclick="showPage('DM')">7 - Elaboração de Apresentação – ppt, videos documentais, e demo final</button><br>
+            <button onclick="showPage('SEMINAR')">8 - Apresentação no Seminário da Disciplina</button><br>
         </main>
     </div>
 
@@ -395,6 +408,136 @@ int main() {
 
 O teste de filtragem em tempo real evidenciou a capacidade da OpenCV em aplicações interativas, ressaltando a relevância do tratamento de imagens em tempo real em campos como a vigilância e a comunicação visual. No futuro, poderemos investigar algoritmos mais sofisticados e utilizações em cenários mais intrincados, como a análise de vídeo e o reconhecimento de padrões.</p>
             </section>
+            <button onclick="showPage('home')">Voltar para a Página Inicial</button>
+        </main>
+    </div>
+
+    <div id="laboratorio3" class="page">
+        <main>
+            <h1>Laboratório 3 – Espaço de Cores</h1>
+            <section>
+                <h2>1 - Introdução</h2>
+                <p>Este laboratório visa dar início às atividades com a biblioteca OpenCV, uma ferramenta bastante popular para o tratamento de imagens e vídeos. No decorrer do experimento, exploramos como visualizar e salvar imagens e vídeos, além de aplicar princípios fundamentais de captura e edição de dados visuais. Este relatório registra o procedimento, as técnicas empregadas e os resultados alcançados.</p>
+            </section>
+
+            <section>
+                <h2>2 - Fundamentos Básicos</h2>
+                <p>O OpenCV é um conjunto de ferramentas de visão computacional que possibilita várias operações em imagens e vídeos, tais como leitura, gravação e processamento. Os conceitos fundamentais discutidos incluem:</p>
+                <ul>
+                    <li>Coleta de Imagens: A ação de extrair uma imagem de um documento ou câmera.</li>
+                    <li>Captura de Vídeos: A habilidade de registrar e guardar sequências de imagens num arquivo de vídeo.</li>
+                    <li>Edição de Imagens: Modificações básicas, como a conversão de imagens em diversos formatos.</li>
+                </ul>
+            </section>
+            
+	    <section>
+		<h2>3 - Materiais e Métodos</h2>
+		<p>Resultados obtidos na pesquisa.</p>
+		<ul>
+		    <li>video_read_from_file: Esse programa cria um objeto VideoCapture para o arquivo que está em 'Resources/Cars.mp4', utiliza o método get() para acessar propriedades do vídeo, como frames per second e frame count. Após isso, cria um loop while que roda enquanto o vídeo estiver aberto, inicializa um objeto Mat, que é uma matriz que representa uma imagem e lê as informações do frame para essa matriz. Renderiza o vídeo em uma janela com o método imshow(). No final do loop, há uma condição que verifica se o usuário apertou 'q' para sair do loop, fecha o arquivo de vídeo, todas as janelas e encerra o programa. Pode ser utilizado em programas de reprodução multimídia.</li>
+		        
+		    <li>video_read_from_image_sequence: Funcionamento quase igual ao 'video_read_from_file', a diferença é que esse lê vários arquivos de imagem, ao invés de um arquivo de vídeo.</li>
+		        
+		    <li>video_read_from_webcam: Novamente o funcionamento é quase igual, porém agora ao criar o objeto VideoCapture passando o argumento 0, é acessada a câmera padrão do computador. Pode ser utilizado em programas de vídeochamada.</li>
+		        
+		    <li>video_write_to_file: Esse arquivo lê um vídeo, obtém a largura e altura e cria um objeto VideoWriter utilizando o formato de compressão MJPEG, em que cada frame do vídeo é uma imagem JPEG. Após isso, é iniciado um loop while que mostra cada frame do vídeo e salva cada frame do vídeo no arquivo 'output.avi'.</li>
+		        
+		    <li>video_write_from_webcam: Funciona de forma parecida com o anterior, a diferença é que ao invés de ler um arquivo de vídeo, lê da webcam. Pode ser utilizado em programas de gravação de vídeos.</li>
+		</ul>
+		</section>
+		
+		<section>
+		    <h2>4 - Resultados e análises</h2>
+		    <p>No decorrer do laboratório, obtivemos:</p>
+		    <ul>
+		        <li>Registrar e guardar a fotografia de Messi.</li>
+		        <li>Efetuar com êxito a leitura e gravação do vídeo, exibindo os quadros.</li>
+		        <li>Elaborar imagens e vídeos do grupo, seguindo as diretrizes relativas às cores.</li>
+			
+			<h1>Vídeo rápido da primeira pessoa</h1>
+		<video width="640" height="360" controls>
+	    	<source src="lab1/rapido.mp4" type="video/mp4">
+	    		</video>
+			<h1>Vídeo lento da segunda pessoa</h1>
+		<video width="640" height="360" controls>
+	    	<source src="lab1/lento.mp4" type="video/mp4">
+	    		</video>
+			<h1>Vídeo rápido da primeiro objeto</h1>
+		<video width="640" height="360" controls>
+	    	<source src="lab1/objeto_rapido.mp4" type="video/mp4">
+	    		</video>
+			<h1>Vídeo lento da segundo objeto</h1>
+		<video width="640" height="360" controls>
+	    	<source src="lab1/objeto_lento.mp4" type="video/mp4">
+			</video>
+			<h1>Imagem do grupo</h1>
+	    <img src="lab1/FotoGrupo.jpg" alt="Descrição da Imagem" width="300" height="200">
+	    		<h1>Foto Montagem</h1>
+	    <img src="lab1/FotoMontagem.jpeg" alt="Descrição da Imagem" width="300" height="200">
+		    </ul>
+		</section>
+
+	      <section>
+		    <h2>5 - Conclusões e comentários finais</h2>
+		    <p>Este laboratório ofereceu uma experiência prática com o OpenCV, facilitando a compreensão dos princípios básicos do processamento de imagem e vídeo. A vivência com a captura e análise de dados visuais evidenciou a flexibilidade da biblioteca. Ademais, a criação de imagens através do Canva foi um acréscimo interessante, que nos possibilitou explorar a criatividade na apresentação dos resultados.</p>
+		    <p>No futuro, poderemos expandir nossos estudos em processamento de vídeo, investigando métodos mais sofisticados e suas utilizações práticas.</p>
+	     </section>
+
+            <button onclick="showPage('home')">Voltar para a Página Inicial</button>
+        </main>
+    </div>
+
+    <div id="laboratorio4" class="page">
+        <main>
+            <h1>Laboratório 4 – Espaço de Cores</h1>
+            <section>
+                <h2>1 - Introdução</h2>
+                <p>Este experimento tem como objetivo explorar o processamento de imagens, especificamente o cálculo e equalização de histogramas, a limiarização (binarização) e a equalização em imagens coloridas. Essas técnicas são amplamente usadas em visão computacional para melhorar a qualidade de imagens, realçar características e preparar dados para análises subsequentes.</p>
+            </section>
+
+            <section>
+                <h2>2 - Fundamentos Básicos</h2>
+                <p>Para realizar o experimento, é essencial entender os seguintes conceitos:</p>
+                <ul>
+                    <li>Histograma de Imagens: Distribuição de intensidade de pixels em uma imagem. É utilizado para representar a quantidade de pixels em cada nível de cinza ou em cada cor, fornecendo informações sobre o contraste e brilho.</li>
+                    <li>Equalização de Histograma: Técnica para ajustar o contraste de uma imagem ao redistribuir as intensidades dos pixels, o que resulta em uma imagem com melhor distribuição de tons.</li>
+                    <li>Limiarização (Binarização): Processo de converter uma imagem em tons de cinza para uma imagem binária, onde os pixels são classificados como preto ou branco com base em um limiar de intensidade.</li>
+                </ul>
+                <p>Esses conceitos foram estudados e implementados conforme as orientações nos tutoriais do OpenCV.</p>
+            </section>
+            
+	    <section>
+		<h2>3 - Materiais e Métodos</h2>
+		<p>Os experimentos foram conduzidos usando a linguagem C++ com a biblioteca OpenCV. Os passos foram os seguintes:</p>
+		<ul>
+		    <li>a) Leitura e Processamento de Imagem: Um programa foi desenvolvido para ler uma imagem e convertê-la para tons de cinza. O histograma da imagem foi calculado e equalizado, e os resultados foram salvos como imagens de saída e gráficos de histograma.</li>
+		        
+		    <li>b) Processamento de Imagem da Webcam: Modificações no código original permitiram o processamento de uma imagem capturada em tempo real pela webcam. O programa exibe a imagem em tons de cinza e equalizada ao vivo.</li>
+		        
+		    <li>c) Binarização de Imagens: video_read_from_webcam: Novamente o funcionamento é quase igual, porém agora ao criar o objeto VideoCapture passando o argumento 0, é acessada a câmera padrão do computador. Pode ser utilizado em programas de vídeochamada.</li>
+		        
+		    <li>d) Equalização em Imagens Coloridas: video_write_to_file: Esse arquivo lê um vídeo, obtém a largura e altura e cria um objeto VideoWriter utilizando o formato de compressão MJPEG, em que cada frame do vídeo é uma imagem JPEG. Após isso, é iniciado um loop while que mostra cada frame do vídeo e salva cada frame do vídeo no arquivo 'output.avi'.</li>
+		        
+		</ul>
+		</section>
+		
+		<section>
+		    <h2>4 - Resultados e análises</h2>
+		    <p>Os resultados indicaram que:</p>
+		    <ul>
+		        <li>Equalização de Histograma: A equalização resultou em uma imagem com contraste significativamente melhorado, especialmente em imagens com pouca variação de intensidade.</li>
+		        <li>Limiarização: A aplicação da binarização após a equalização produziu uma imagem binária mais nítida e com maior destaque dos detalhes.</li>
+		        <li>Elaborar imagens e vídeos do grupo, seguindo as diretrizes relativas às cores.</li>
+			
+                
+		    </ul>
+		</section>
+
+	      <section>
+		    <h2>5 - Conclusões e comentários finais</h2>
+		    <p>As técnicas de histogramas e limiarização são eficazes para manipulação e realce de imagens. A equalização trouxe melhorias notáveis no contraste e foi essencial para a binarização eficaz. Em imagens coloridas, a equalização separada dos canais aprimorou a vivacidade e clareza. Esse conjunto de técnicas é altamente aplicável em tarefas de visão computacional, onde a definição de contrastes é crucial.</p>
+	     </section>
+
             <button onclick="showPage('home')">Voltar para a Página Inicial</button>
         </main>
     </div>
