@@ -1,0 +1,6 @@
+cmake_minimum_required(VERSION 2.8)
+project( equalize_three_channels )
+find_package( OpenCV REQUIRED )
+include_directories( ${OpenCV_INCLUDE_DIRS} )
+add_executable( equalize_three_channels equalize_three_channels.cpp )
+target_link_libraries( equalize_three_channels ${OpenCV_LIBS} )

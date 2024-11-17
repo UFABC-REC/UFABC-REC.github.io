@@ -1,0 +1,6 @@
+cmake_minimum_required(VERSION 2.8)
+project( equalize_webcam_image )
+find_package( OpenCV REQUIRED )
+include_directories( ${OpenCV_INCLUDE_DIRS} )
+add_executable( equalize_webcam_image equalize_webcam_image.cpp )
+target_link_libraries( equalize_webcam_image ${OpenCV_LIBS} )
