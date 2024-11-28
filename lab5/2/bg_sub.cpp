@@ -23,7 +23,7 @@ int main(int argc, char* argv[])
     else
         pBackSub = createBackgroundSubtractorKNN();
 
-    // Abre webcam
+    // Abre webcam 
     VideoCapture capture(0);
     if (!capture.isOpened()) {
         printf("\nNão foi possível acessar a webcam!\n");

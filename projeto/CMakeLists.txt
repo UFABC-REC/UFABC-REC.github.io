@@ -1,0 +1,6 @@
+cmake_minimum_required(VERSION 2.8)
+project( detectar_invasor )
+find_package( OpenCV REQUIRED )
+include_directories( ${OpenCV_INCLUDE_DIRS} )
+add_executable( detectar_invasor detectar_invasor.cpp )
+target_link_libraries( detectar_invasor ${OpenCV_LIBS} )
