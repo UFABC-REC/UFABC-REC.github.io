@@ -1,6 +1,6 @@
 /**
  * NOME: Leandro Scarpi Granelli, RA: 11202022007
- * NOME: Willian Gambaro
+ * NOME: Willian Luiz Gambaro, RA: 11202022276
  * NOME: Leonardo Lerio
  * DATA: 27/11/2024
  * PROGRAMA: detectar_carros.cpp
@@ -58,7 +58,7 @@ int main() {
             }
         }
 
-        imshow("Vídeo com máscara dilatada", mask);
+        imshow("Máscara", mask);
         imshow("Vídeo original", frame);
 
         char key = waitKey(30);
